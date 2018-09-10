@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
 import pickle
-import numpy
-numpy.random.seed(42)
+import numpy as np
+np.random.seed(42)
 
 
 ### The words (features) and authors (labels), already largely processed.
@@ -39,5 +39,19 @@ labels_train   = labels_train[:150]
 
 ### your code goes here
 
+from sklearn import tree
+clf = tree.DecisionTreeClassifier()
+clf.fit(features_train, labels_train)
+pred = clf.predict(features_test)
 
+from sklearn import metrics
+acc = metrics.accuracy_score(pred, labels_test)
+print "acc = ", acc
+
+index_max = np.unravel_index(clf.feature_importances_.argmax(), clf.feature_importances_.shape)
+ll=vectorizer.get_feature_names()
+
+
+import pdb
+pdb.set_trace()
 

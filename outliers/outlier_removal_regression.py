@@ -26,14 +26,9 @@ ages_train, ages_test, net_worths_train, net_worths_test = train_test_split(ages
 ### fill in a regression here!  Name the regression object reg so that
 ### the plotting code below works, and you can see what your regression looks like
 
-
-
-
-
-
-
-
-
+from sklearn.linear_model import LinearRegression
+reg = LinearRegression()
+reg.fit(ages_train, net_worths_train)
 
 
 try:
@@ -46,6 +41,7 @@ plt.show()
 
 ### identify and remove the most outlier-y points
 cleaned_data = []
+
 try:
     predictions = reg.predict(ages_train)
     cleaned_data = outlierCleaner( predictions, ages_train, net_worths_train )
@@ -81,4 +77,8 @@ if len(cleaned_data) > 0:
 
 else:
     print "outlierCleaner() is returning an empty list, no refitting to be done"
+
+
+import pdb
+pdb.set_trace()
 
